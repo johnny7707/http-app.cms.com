@@ -1,0 +1,90 @@
+	     $teachers->first_name       =  $request->input('first_name');
+            $teachers->designation      =  $request->input('designation');
+            $teachers->last_name        =  $request->input('last_name');
+            $teachers->idcard           =  $request->input('idcard');
+            $teachers->dob              =  $request->input('dob');
+            $teachers->age              =  $request->input('age');
+            $teachers->mobile           =  $request->input('mobile');
+            $teachers->social           =  $request->input('social');
+            $teachers->address          =  $request->input('address');
+            $teachers->position         =  $request->input('position');
+            $teachers->degree_dhamma    =  $request->input('degree_dhamma');
+            $teachers->degree_world     =  $request->input('degree_world');
+            $teachers->major            =  $request->input('major');
+            $teachers->license_id       =  $request->input('license_id');
+            $teachers->assign_date      =  $request->input('assign_date');
+            $teachers->agency           =  $request->input('agency');
+
+
+
+            $teachers->first_name       
+            $teachers->designation      
+            $teachers->last_name        
+            $teachers->idcard           
+            $teachers->dob              
+            $teachers->age              
+            $teachers->mobile           
+            $teachers->social           
+            $teachers->address          
+            $teachers->position         
+            $teachers->degree_dhamma    
+            $teachers->degree_world     
+            $teachers->major            
+            $teachers->license_id       
+            $teachers->assign_date     
+            $teachers->agency 
+
+
+
+            {{ csrf_field() }}
+
+
+
+
+            public function update(Request $request, $id)
+    {
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
+    //    if($image != '')
+    //    {
+            $this->validate($request, [
+            'first_name'    =>  'required',
+            'last_name'     =>  'required',
+            'mobile'        =>  'required|numeric',
+            'position'      =>  'required'  
+        ]);
+
+        $image = $request->file('image');
+
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+
+        $location = public_path('images/teachers/', $filename);
+
+        $image->move($location, $filename);
+
+    //    }else{
+
+            $teachers = new Teacher;
+
+            $teachers->first_name       =  $request->input('first_name');
+            $teachers->designation      =  $request->input('designation');
+            $teachers->last_name        =  $request->input('last_name');
+            $teachers->idcard           =  $request->input('idcard');
+            $teachers->dob              =  $request->input('dob');
+            $teachers->age              =  $request->input('age');
+            $teachers->mobile           =  $request->input('mobile');
+            $teachers->social           =  $request->input('social');
+            $teachers->address          =  $request->input('address');
+            $teachers->position         =  $request->input('position');
+            $teachers->degree_dhamma    =  $request->input('degree_dhamma');
+            $teachers->degree_world     =  $request->input('degree_world');
+            $teachers->major            =  $request->input('major');
+            $teachers->license_id       =  $request->input('license_id');
+            $teachers->assign_date      =  $request->input('assign_date');
+            $teachers->agency           =  $request->input('agency');
+    //    }
+
+        $teachers->update();
+
+        return redirect('teachers')->with('success', 'ข้อมูลอัพเดทสำเร็จเรียบร้อยแล้ว');
+    }
